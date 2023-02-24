@@ -86,3 +86,24 @@ func TestGetOutputNode(t *testing.T) {
 	//get information
 	ViewInformationNode(&node)
 }
+
+func TestCreateFirstNode(t *testing.T) {
+	x1 := []float32{1, 2, 3}
+	x2 := []float32{4, 5, 2}
+	x3 := []float32{4, 5, 6}
+	X := make([][]float32, 3)
+	X[0] = x1
+	X[1] = x2
+	X[2] = x3
+
+	node := Node{
+		NumberNeuron: 0,
+		Neuron:       nil,
+		Bias:         0,
+	}
+	CreateFirstNode(&node, X)
+	for i := 0; i < node.NumberNeuron; i++ {
+		GetOuput(&node, X[0], i)
+	}
+	ViewInformationNode(&node)
+}

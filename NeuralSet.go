@@ -30,8 +30,22 @@ func GetOuput(node *Node, x []float32, index int) {
 }
 
 func ViewInformationNode(node *Node) {
-	for i := 0; i < node.NumberNeuron; i++ {
-		fmt.Println("output : ", node.output)
-		fmt.Println("bias : ", node.Bias)
+	fmt.Println("output : ", node.output)
+	fmt.Println("bias : ", node.Bias)
+	//nNeuron := len(node.Neuron)
+	for _, neu := range node.Neuron {
+		fmt.Println(neu.Weights)
+	}
+}
+
+func CreateFirstNode(node *Node, x [][]float32) {
+	if node.Neuron == nil {
+		nWeight := len(x[0])
+		node.NumberNeuron = nWeight
+		for i := 0; i < nWeight; i++ {
+			tempNeuron := Neuron{}
+			node.Neuron = append(node.Neuron, tempNeuron)
+			InitialNeuron(&node.Neuron[i], nWeight)
+		}
 	}
 }
