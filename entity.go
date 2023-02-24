@@ -9,6 +9,7 @@ type Node struct {
 	NumberNeuron int
 	Neuron       []Neuron
 	Bias         float32
+	output       float32
 }
 
 type Nodes struct {
