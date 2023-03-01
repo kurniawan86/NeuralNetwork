@@ -15,3 +15,7 @@ type Node struct {
 type Nodes struct {
 	Node []Node
 }
+
+type Layer struct {
+	Nodes []Nodes
+}

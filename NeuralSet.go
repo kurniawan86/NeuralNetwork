@@ -49,3 +49,55 @@ func CreateFirstNode(node *Node, x [][]float32) {
 		}
 	}
 }
+
+func AddFirstLayer(layer *Layer, nNode int, x [][]float32) {
+	nodes := Nodes{}
+	for i := 0; i < nNode; i++ {
+		tempNode := Node{}
+		CreateFirstNode(&tempNode, x)
+		nodes.Node = append(nodes.Node, tempNode)
+	}
+	layer.Nodes = append(layer.Nodes, nodes)
+}
+
+func ViewInformationNeuron(neuron Neuron) {
+	fmt.Println("weight", neuron.Weights)
+}
+
+func AddLayer(layer *Layer, nNode int) {
+	//fmt.Println(len(layer.Nodes))
+	n := len(layer.Nodes)
+	//fmt.Println(len(layer.Nodes[n-1].Node))
+	m := len(layer.Nodes[n-1].Node)
+	var outputs []float32
+	for i := 0; i < m; i++ {
+		outputs = append(outputs, layer.Nodes[n-1].Node[i].output)
+	}
+
+	nodes := Nodes{}
+
+	for j := 0; j < nNode; j++ {
+		node := Node{}
+		node.NumberNeuron = m
+		for i := 0; i < m; i++ {
+			tempNeuron := Neuron{}
+			node.Neuron = append(node.Neuron, tempNeuron)
+			InitialNeuron(&node.Neuron[i], m)
+		}
+		nodes.Node = append(nodes.Node, node)
+	}
+	layer.Nodes = append(layer.Nodes, nodes)
+}
+
+func StrukturNode(layer *Layer) {
+	for _, nodes := range layer.Nodes {
+		fmt.Println("Nodes : ", len(nodes.Node))
+		for _, node := range nodes.Node {
+			fmt.Println("node : ", node.Neuron)
+		}
+	}
+}
+
+func Foward(layer *Layer) {
+
+}

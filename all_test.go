@@ -107,3 +107,53 @@ func TestCreateFirstNode(t *testing.T) {
 	}
 	ViewInformationNode(&node)
 }
+
+func TestAddFirstLayer(t *testing.T) {
+	x1 := []float32{1, 2, 3}
+	x2 := []float32{4, 5, 2}
+	x3 := []float32{4, 5, 6}
+	X := make([][]float32, 3)
+	X[0] = x1
+	X[1] = x2
+	X[2] = x3
+
+	layer := Layer{}
+	AddFirstLayer(&layer, 2, X)
+	fmt.Println(len(layer.Nodes))
+	for i, _ := range layer.Nodes[0].Node {
+		GetOuput(&layer.Nodes[0].Node[i], X[0], i)
+		fmt.Println(layer.Nodes[0].Node[i])
+	}
+	AddLayer(&layer, 3)
+	fmt.Println("layer nodes :", len(layer.Nodes))
+	fmt.Println("layer nodes node :", len(layer.Nodes[0].Node))
+	fmt.Println("layer nodes node :", len(layer.Nodes[1].Node))
+	AddLayer(&layer, 5)
+	fmt.Println("layer nodes node :", len(layer.Nodes[2].Node))
+	StrukturNode(&layer)
+}
+
+func TestOutputStrukturNN(t *testing.T) {
+	x1 := []float32{1, 2, 3}
+	x2 := []float32{4, 5, 2}
+	x3 := []float32{4, 5, 6}
+	X := make([][]float32, 3)
+	X[0] = x1
+	X[1] = x2
+	X[2] = x3
+
+	layer := Layer{}
+	AddFirstLayer(&layer, 2, X)
+	fmt.Println(len(layer.Nodes))
+	for i, _ := range layer.Nodes[0].Node {
+		GetOuput(&layer.Nodes[0].Node[i], X[0], i)
+		fmt.Println(layer.Nodes[0].Node[i])
+	}
+	AddLayer(&layer, 3)
+	fmt.Println("layer nodes :", len(layer.Nodes))
+	fmt.Println("layer nodes node :", len(layer.Nodes[0].Node))
+	fmt.Println("layer nodes node :", len(layer.Nodes[1].Node))
+	AddLayer(&layer, 5)
+	fmt.Println("layer nodes node :", len(layer.Nodes[2].Node))
+	StrukturNode(&layer)
+}
